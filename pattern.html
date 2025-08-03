@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Star Pattern Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px;
+    }
+    select, input, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    pre {
+      background: #222;
+      color: #0f0;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>⭐ Star Pattern Generator</h1>
+  
+  <label>Enter number of rows:</label>
+  <input type="number" id="rows" value="5" />
+
+  <label>Select pattern:</label>
+  <select id="patternType">
+    <option value="half">Half Pyramid</option>
+    <option value="inverted">Inverted Half Pyramid</option>
+    <option value="full">Full Pyramid</option>
+    <option value="diamond">Diamond</option>
+  </select>
+
+  <button onclick="generatePattern()">Generate</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    function generatePattern() {
+      const n = parseInt(document.getElementById('rows').value);
+      const patternType = document.getElementById('patternType').value;
+      let result = "";
+
+      if (patternType === "half") {
+        for (let i = 1; i <= n; i++) {
+          result += "*".repeat(i) + "\n";
+        }
+      }
+
+      else if (patternType === "inverted") {
+        for (let i = n; i >= 1; i--) {
+          result += "*".repeat(i) + "\n";
+        }
+      }
+
+      else if (patternType === "full") {
+        for (let i = 1; i <= n; i++) {
+          result += " ".repeat(n - i) + "*".repeat(2 * i - 1) + "\n";
+        }
+      }
+
+      else if (patternType === "diamond") {
+        for (let i = 1; i <= n; i++) {
+          result += " ".repeat(n - i) + "*".repeat(2 * i - 1) + "\n";
+        }
+        for (let i = n - 1; i >= 1; i--) {
+          result += " ".repeat(n - i) + "*".repeat(2 * i - 1) + "\n";
+        }
+      }
+
+      document.getElementById('output').innerText = result;
+    }
+  </script>
+</body>
+</html>
